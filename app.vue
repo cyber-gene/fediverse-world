@@ -12,7 +12,7 @@
 <script lang="ts" setup>
 import { onMounted, onUnmounted } from 'vue';
 
-let observer: IntersectionObserver;
+let observer: IntersectionObserver | undefined;
 
 onMounted(() => {
   const sections = document.querySelectorAll('.section');
@@ -36,6 +36,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   observer?.disconnect();
+  observer = undefined;
 });
 </script>
 
