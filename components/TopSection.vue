@@ -1,6 +1,6 @@
 <template>
   <div class="section center">
-    <h1 class="typewriter">{{ text }}<span class="cursor">_</span></h1>
+    <h1 class="typewriter">{{ text }}<span ref="cursorEl" class="cursor">_</span></h1>
   </div>
 </template>
 
@@ -11,6 +11,7 @@ const text = ref('');
 const fullText = 'Dive into the "Federated" universe!!'; // 表示するテキスト
 const index = ref(0);
 const speed = 100; // タイピング速度（ミリ秒）
+const cursorEl = ref<HTMLElement | null>(null);
 
 const typeEffect = () => {
   if (index.value < fullText.length) {
@@ -19,8 +20,7 @@ const typeEffect = () => {
     setTimeout(typeEffect, speed);
   } else {
     // タイピングが完了したらカーソル点滅
-    const cursor = document.querySelector('.cursor');
-    if (cursor) cursor.classList.add('blink');
+    cursorEl.value?.classList.add('blink');
   }
 };
 

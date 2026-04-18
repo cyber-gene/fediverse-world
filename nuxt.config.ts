@@ -8,7 +8,27 @@ export default defineNuxtConfig({
     preset: 'netlify',
   },
 
-  modules: ['@nuxtjs/google-fonts', 'nuxt-mdi'],
+  modules: ['@nuxtjs/google-fonts'],
+
+  app: {
+    head: {
+      title: 'Fediverse World',
+      meta: [
+        {
+          name: 'description',
+          content:
+            'Fediverse World introduces you to the Fediverse — a network of interconnected, decentralized social media platforms.',
+        },
+        { property: 'og:title', content: 'Fediverse World' },
+        {
+          property: 'og:description',
+          content:
+            'Fediverse World introduces you to the Fediverse — a network of interconnected, decentralized social media platforms.',
+        },
+        { property: 'og:type', content: 'website' },
+      ],
+    },
+  },
 
   googleFonts: {
     families: {
