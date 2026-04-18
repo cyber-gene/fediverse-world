@@ -10,6 +10,7 @@ const ctx = ref<CanvasRenderingContext2D | null>(null);
 const numStars = 500;
 const stars = ref<{ x: number; y: number; z: number }[]>([]);
 let animationId = 0;
+let paused = false;
 
 const initCanvas = () => {
   if (!canvas.value) return;
@@ -64,6 +65,7 @@ const drawStars = () => {
 };
 
 const animate = () => {
+  if (paused) return;
   updateStars();
   drawStars();
   animationId = requestAnimationFrame(animate);
@@ -71,8 +73,10 @@ const animate = () => {
 
 const handleVisibilityChange = () => {
   if (document.hidden) {
+    paused = true;
     cancelAnimationFrame(animationId);
   } else {
+    paused = false;
     animate();
   }
 };
