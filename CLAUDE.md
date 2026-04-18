@@ -20,6 +20,14 @@ npm run preview
 
 テストフレームワークは導入されていない。
 
+## コミット規約
+
+Netlify CI でPRごとにデプロイプレビューが生成される。ドキュメントのみの変更（`CLAUDE.md`、`README.md` など）はデプロイ不要なので、コミットメッセージに `[ci skip]` プレフィックスを付ける。
+
+```
+[ci skip] Update CLAUDE.md
+```
+
 ## コードフォーマット
 
 Prettier を使用（`.prettierrc` 参照）:
