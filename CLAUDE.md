@@ -26,7 +26,7 @@ Prettier を使用（`.prettierrc` 参照）:
 - セミコロンあり
 - シングルクォート
 - インデント幅 2
-- trailing comma: ES5
+- trailing comma: es5
 
 ## アーキテクチャ
 
