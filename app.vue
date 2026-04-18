@@ -10,13 +10,13 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted } from 'vue';
-import Background from './components/Background.vue';
-import AboutFediverse from '~/components/AboutFediverse.vue';
+import { onMounted, onUnmounted } from 'vue';
+
+let observer: IntersectionObserver;
 
 onMounted(() => {
   const sections = document.querySelectorAll('.section');
-  const observer = new IntersectionObserver(
+  observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -32,6 +32,10 @@ onMounted(() => {
   sections.forEach((section) => {
     observer.observe(section);
   });
+});
+
+onUnmounted(() => {
+  observer?.disconnect();
 });
 </script>
 
@@ -50,7 +54,6 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  gap: 100vh;
 }
 
 .section {
