@@ -35,6 +35,9 @@ export default defineNuxtConfig({
   },
 
   fonts: {
-    families: [{ name: 'Noto Sans', provider: 'google' }, { name: 'JetBrains Mono', provider: 'google' }],
+    families: [
+      { name: 'Noto Sans', provider: 'google' },
+      { name: 'JetBrains Mono', provider: 'google' },
+    ],
   },
 });
