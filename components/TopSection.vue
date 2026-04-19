@@ -99,16 +99,15 @@ onUnmounted(() => {
   height: 1.5rem;
   border-right: 2px solid rgba(255, 255, 255, 0.6);
   border-bottom: 2px solid rgba(255, 255, 255, 0.6);
-  transform: rotate(45deg);
   animation: bounce 1.2s ease-in-out infinite;
 }
 
 @keyframes bounce {
   0%, 100% {
-    transform: rotate(45deg) translateY(0);
+    transform: translateY(0) rotate(45deg);
   }
   50% {
-    transform: rotate(45deg) translateY(6px);
+    transform: translateY(6px) rotate(45deg);
   }
 }
 
