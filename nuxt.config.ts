@@ -4,6 +4,10 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: false,
 
+  experimental: {
+    serverAppConfig: false,
+  },
+
   nitro: {
     preset: 'netlify',
   },
