@@ -4,11 +4,15 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: false,
 
+  experimental: {
+    serverAppConfig: false,
+  },
+
   nitro: {
     preset: 'netlify',
   },
 
-  modules: ['@nuxtjs/google-fonts'],
+  modules: ['@nuxt/fonts'],
 
   app: {
     head: {
@@ -30,10 +34,10 @@ export default defineNuxtConfig({
     },
   },
 
-  googleFonts: {
-    families: {
-      'Noto+Sans': true,
-      'JetBrains+Mono': true,
-    },
+  fonts: {
+    families: [
+      { name: 'Noto Sans', provider: 'google' },
+      { name: 'JetBrains Mono', provider: 'google' },
+    ],
   },
 });
