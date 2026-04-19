@@ -1,20 +1,23 @@
 <template>
-  <canvas ref="canvas" class="fixed top-0 left-0 w-full h-full"></canvas>
+  <canvas ref="canvas" aria-hidden="true" role="presentation"></canvas>
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 const canvas = ref<HTMLCanvasElement | null>(null);
 const ctx = ref<CanvasRenderingContext2D | null>(null);
 
 const numStars = 500;
 const stars = ref<{ x: number; y: number; z: number }[]>([]);
+let animationId = 0;
+let paused = false;
 
 const initCanvas = () => {
   if (!canvas.value) return;
   canvas.value.width = window.innerWidth;
   canvas.value.height = window.innerHeight;
   ctx.value = canvas.value.getContext('2d') || null;
+  createStars();
 };
 
 const createStars = () => {
@@ -62,16 +65,33 @@ const drawStars = () => {
 };
 
 const animate = () => {
+  if (paused) return;
   updateStars();
   drawStars();
-  requestAnimationFrame(animate);
+  animationId = requestAnimationFrame(animate);
+};
+
+const handleVisibilityChange = () => {
+  if (document.hidden) {
+    paused = true;
+    cancelAnimationFrame(animationId);
+  } else {
+    paused = false;
+    animate();
+  }
 };
 
 onMounted(() => {
   initCanvas();
-  createStars();
   animate();
   window.addEventListener('resize', initCanvas);
+  document.addEventListener('visibilitychange', handleVisibilityChange);
+});
+
+onUnmounted(() => {
+  cancelAnimationFrame(animationId);
+  window.removeEventListener('resize', initCanvas);
+  document.removeEventListener('visibilitychange', handleVisibilityChange);
 });
 </script>
 
