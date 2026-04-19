@@ -8,12 +8,9 @@ export default defineNuxtConfig({
     preset: 'netlify',
   },
 
-  modules: ['@nuxtjs/google-fonts'],
+  modules: ['@nuxt/fonts'],
 
-  googleFonts: {
-    families: {
-      'Noto+Sans': true,
-      'JetBrains+Mono': true,
-    },
+  fonts: {
+    families: [{ name: 'Noto Sans', provider: 'google' }, { name: 'JetBrains Mono', provider: 'google' }],
   },
 });
