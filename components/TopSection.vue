@@ -16,39 +16,45 @@ const index = ref(0);
 const speed = 100; // タイピング速度（ミリ秒）
 const cursorEl = ref<HTMLElement | null>(null);
 const showIndicator = ref(false);
-
-const typeEffect = () => {
-  if (index.value < fullText.length) {
-    text.value += fullText.charAt(index.value);
-    index.value++;
-    setTimeout(typeEffect, speed);
-  } else {
-    // タイピングが完了したらカーソル点滅・インジケーター表示（既にスクロール済みなら表示しない）
-    cursorEl.value?.classList.add('blink');
-    onScroll();
-  }
-};
+let timerId: ReturnType<typeof setTimeout> | undefined;
 
 const onScroll = () => {
   if (window.scrollY > 50) {
     showIndicator.value = false;
     window.removeEventListener('scroll', onScroll);
+  }
+};
+
+const typeEffect = () => {
+  if (index.value < fullText.length) {
+    text.value += fullText.charAt(index.value);
+    index.value++;
+    timerId = setTimeout(typeEffect, speed);
   } else {
-    showIndicator.value = true;
+    // タイピングが完了したらカーソル点滅・インジケーター表示（既にスクロール済みなら表示しない）
+    cursorEl.value?.classList.add('blink');
+    if (window.scrollY <= 50) {
+      showIndicator.value = true;
+      window.addEventListener('scroll', onScroll, { passive: true });
+    }
   }
 };
 
 onMounted(() => {
   typeEffect();
-  window.addEventListener('scroll', onScroll, { passive: true });
 });
 
 onUnmounted(() => {
+  clearTimeout(timerId);
   window.removeEventListener('scroll', onScroll);
 });
 </script>
 
 <style scoped>
+.section {
+  position: relative;
+}
+
 .typewriter {
   font-family: 'JetBrains Mono', sans-serif;
   font-size: 3rem;
