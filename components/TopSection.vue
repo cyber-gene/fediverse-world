@@ -23,15 +23,18 @@ const typeEffect = () => {
     index.value++;
     setTimeout(typeEffect, speed);
   } else {
-    // タイピングが完了したらカーソル点滅・インジケーター表示
+    // タイピングが完了したらカーソル点滅・インジケーター表示（既にスクロール済みなら表示しない）
     cursorEl.value?.classList.add('blink');
-    showIndicator.value = true;
+    onScroll();
   }
 };
 
 const onScroll = () => {
   if (window.scrollY > 50) {
     showIndicator.value = false;
+    window.removeEventListener('scroll', onScroll);
+  } else {
+    showIndicator.value = true;
   }
 };
 
@@ -100,6 +103,15 @@ onUnmounted(() => {
   }
   50% {
     transform: rotate(45deg) translateY(6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-indicator {
+    transition: none;
+  }
+  .scroll-arrow {
+    animation: none;
   }
 }
 </style>
