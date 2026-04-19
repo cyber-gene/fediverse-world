@@ -14,12 +14,13 @@ const text = ref('');
 const fullText = 'Dive into the "Federated" universe!!'; // 表示するテキスト
 const index = ref(0);
 const speed = 100; // タイピング速度（ミリ秒）
+const HIDE_SCROLL_THRESHOLD_PX = 50;
 const cursorEl = ref<HTMLElement | null>(null);
 const showIndicator = ref(false);
 let timerId: ReturnType<typeof setTimeout> | undefined;
 
 const onScroll = () => {
-  if (window.scrollY > 50) {
+  if (window.scrollY > HIDE_SCROLL_THRESHOLD_PX) {
     showIndicator.value = false;
     window.removeEventListener('scroll', onScroll);
   }
@@ -33,7 +34,7 @@ const typeEffect = () => {
   } else {
     // タイピングが完了したらカーソル点滅・インジケーター表示（既にスクロール済みなら表示しない）
     cursorEl.value?.classList.add('blink');
-    if (window.scrollY <= 50) {
+    if (window.scrollY <= HIDE_SCROLL_THRESHOLD_PX) {
       showIndicator.value = true;
       window.addEventListener('scroll', onScroll, { passive: true });
     }
@@ -99,6 +100,7 @@ onUnmounted(() => {
   height: 1.5rem;
   border-right: 2px solid rgba(255, 255, 255, 0.6);
   border-bottom: 2px solid rgba(255, 255, 255, 0.6);
+  transform: rotate(45deg);
   animation: bounce 1.2s ease-in-out infinite;
 }
 
