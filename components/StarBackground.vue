@@ -46,14 +46,14 @@ const drawStars = () => {
   ctx.value.fillRect(0, 0, canvas.value.width, canvas.value.height);
 
   stars.value.forEach((star) => {
-    let factor = 128.0 / star.z;
-    let x =
+    const factor = 128.0 / star.z;
+    const x =
       (star.x - (canvas.value?.width || 0) / 2) * factor +
       (canvas.value?.width || 0) / 2;
-    let y =
+    const y =
       (star.y - (canvas.value?.height || 0) / 2) * factor +
       (canvas.value?.height || 0) / 2;
-    let radius = factor;
+    const radius = factor;
 
     if (ctx.value) {
       ctx.value.beginPath();

@@ -12,7 +12,7 @@ export default defineNuxtConfig({
     preset: 'netlify',
   },
 
-  modules: ['@nuxt/fonts'],
+  modules: ['@nuxt/fonts', '@nuxt/eslint'],
 
   app: {
     head: {
