@@ -1,7 +1,7 @@
 <template>
   <div>
     <NuxtRouteAnnouncer />
-    <Background />
+    <StarBackground />
     <div class="sections">
       <TopSection />
       <AboutFediverse />
