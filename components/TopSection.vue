@@ -17,7 +17,7 @@
 import { onMounted, onUnmounted, ref } from 'vue';
 
 const text = ref('');
-const fullText = computed(() => 'Dive into the "Federated" universe!!');
+const fullText = 'Dive into the "Federated" universe!!';
 const index = ref(0);
 const speed = 100; // タイピング速度（ミリ秒）
 const HIDE_SCROLL_THRESHOLD_PX = 50;
@@ -33,8 +33,8 @@ const onScroll = () => {
 };
 
 const typeEffect = () => {
-  if (index.value < fullText.value.length) {
-    text.value += fullText.value.charAt(index.value);
+  if (index.value < fullText.length) {
+    text.value += fullText.charAt(index.value);
     index.value++;
     timerId = setTimeout(typeEffect, speed);
   } else {

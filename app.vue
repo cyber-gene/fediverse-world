@@ -6,7 +6,9 @@
       <button
         v-for="loc in locales"
         :key="loc.code"
+        type="button"
         :class="{ active: locale === loc.code }"
+        :aria-pressed="locale === loc.code"
         @click="setLocale(loc.code)"
       >
         {{ loc.code.toUpperCase() }}
