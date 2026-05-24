@@ -2,6 +2,16 @@
   <div>
     <NuxtRouteAnnouncer />
     <StarBackground />
+    <div class="lang-switcher">
+      <button
+        v-for="loc in locales"
+        :key="loc.code"
+        :class="{ active: locale === loc.code }"
+        @click="setLocale(loc.code)"
+      >
+        {{ loc.code.toUpperCase() }}
+      </button>
+    </div>
     <div class="sections">
       <TopSection />
       <AboutFediverse />
@@ -11,6 +21,8 @@
 
 <script lang="ts" setup>
 import { onMounted, onUnmounted } from 'vue';
+
+const { locale, locales, setLocale } = useI18n();
 
 let observer: IntersectionObserver | undefined;
 
@@ -84,5 +96,37 @@ body {
 
 .section.left {
   align-items: flex-start;
+}
+
+.lang-switcher {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 100;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.lang-switcher button {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.6);
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', sans-serif;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.lang-switcher button:hover {
+  border-color: rgba(255, 255, 255, 0.8);
+  color: white;
+}
+
+.lang-switcher button.active {
+  border-color: white;
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
 }
 </style>

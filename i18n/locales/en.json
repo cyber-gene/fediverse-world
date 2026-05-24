@@ -1,0 +1,30 @@
+{
+  "about": {
+    "title": "What is the Fediverse?",
+    "intro1": "The {fediverse} is a network of social media platforms that can connect and interact with each other.",
+    "intro2": "Unlike platforms like Twitter or Instagram, which are controlled by a single company, the Fediverse consists of many independently operated servers, each with its own community and rules.",
+    "features": {
+      "title": "Features of the Fediverse",
+      "item1": {
+        "title": "Different social media platforms can communicate with each other!",
+        "description": "The Fediverse includes various social media platforms such as \"Mastodon\" and \"Misskey.\" Even though they are separate platforms, they are all part of the same Fediverse network and can interact with each other."
+      },
+      "item2": {
+        "title": "Anyone can create and manage a server!",
+        "description": "Instead of being controlled by a single organization, the Fediverse allows different people to run their own servers. You can join any server you like, and if you want, you can even start your own."
+      },
+      "item3": {
+        "title": "Each server has its own community and rules!",
+        "description": "Some servers focus on friendly discussions, while others are designed for specific interests, like gaming or technology. You can choose a space that fits you best."
+      },
+      "item4": {
+        "title": "More privacy and independence!",
+        "description": "Since these platforms are not owned by a single company, they don't collect data for advertising purposes, making them a more private and user-controlled alternative."
+      }
+    },
+    "howto": {
+      "title": "How to use the Fediverse?",
+      "description": "Instead of just downloading an app and signing up like Twitter, you need to choose a server to join. But don't worry! No matter which server you pick, you can still communicate with users from other servers within the Fediverse."
+    }
+  }
+}
