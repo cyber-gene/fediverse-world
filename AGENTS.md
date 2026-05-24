@@ -1,6 +1,6 @@
-# CLAUDE.md
+# AGENTS.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Codex (Codex.ai/code) when working with code in this repository.
 
 ## コマンド
 
@@ -22,10 +22,10 @@ npm run preview
 
 ## コミット規約
 
-Netlify CI でPRごとにデプロイプレビューが生成される。ドキュメントのみの変更（`CLAUDE.md`、`README.md` など）はデプロイ不要なので、コミットメッセージに `[ci skip]` プレフィックスを付ける。
+Netlify CI でPRごとにデプロイプレビューが生成される。ドキュメントのみの変更（`AGENTS.md`、`README.md` など）はデプロイ不要なので、コミットメッセージに `[ci skip]` プレフィックスを付ける。
 
 ```
-[ci skip] Update CLAUDE.md
+[ci skip] Update AGENTS.md
 ```
 
 ## コードフォーマット
