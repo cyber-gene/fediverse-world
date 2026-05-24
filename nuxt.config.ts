@@ -12,7 +12,22 @@ export default defineNuxtConfig({
     preset: 'netlify',
   },
 
-  modules: ['@nuxt/fonts', '@nuxt/eslint'],
+  modules: ['@nuxt/fonts', '@nuxt/eslint', '@nuxtjs/i18n'],
+
+  i18n: {
+    strategy: 'no_prefix',
+    defaultLocale: 'en',
+    locales: [
+      { code: 'en', language: 'en-US', file: 'en.json' },
+      { code: 'ja', language: 'ja-JP', file: 'ja.json' },
+    ],
+    langDir: 'locales',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      alwaysRedirect: false,
+    },
+  },
 
   app: {
     head: {

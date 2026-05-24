@@ -1,7 +1,13 @@
 <template>
   <div class="section center">
-    <h1 class="typewriter">{{ text }}<span ref="cursorEl" class="cursor">_</span></h1>
-    <div class="scroll-indicator" :class="{ visible: showIndicator }" aria-hidden="true">
+    <h1 class="typewriter">
+      {{ text }}<span ref="cursorEl" class="cursor">_</span>
+    </h1>
+    <div
+      class="scroll-indicator"
+      :class="{ visible: showIndicator }"
+      aria-hidden="true"
+    >
       <span class="scroll-arrow"></span>
     </div>
   </div>
@@ -11,7 +17,7 @@
 import { onMounted, onUnmounted, ref } from 'vue';
 
 const text = ref('');
-const fullText = 'Dive into the "Federated" universe!!'; // 表示するテキスト
+const fullText = 'Dive into the "Federated" universe!!';
 const index = ref(0);
 const speed = 100; // タイピング速度（ミリ秒）
 const HIDE_SCROLL_THRESHOLD_PX = 50;
@@ -32,7 +38,6 @@ const typeEffect = () => {
     index.value++;
     timerId = setTimeout(typeEffect, speed);
   } else {
-    // タイピングが完了したらカーソル点滅・インジケーター表示（既にスクロール済みなら表示しない）
     cursorEl.value?.classList.add('blink');
     if (window.scrollY <= HIDE_SCROLL_THRESHOLD_PX) {
       showIndicator.value = true;
@@ -105,7 +110,8 @@ onUnmounted(() => {
 }
 
 @keyframes bounce {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0) rotate(45deg);
   }
   50% {
