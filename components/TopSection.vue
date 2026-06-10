@@ -1,8 +1,9 @@
 <template>
-  <div class="section center">
-    <h1 class="typewriter">
-      {{ text }}<span ref="cursorEl" class="cursor">_</span>
-    </h1>
+  <div class="section center active">
+    <div class="typewriter-wrapper">
+      <h1 class="typewriter typewriter-ghost" aria-hidden="true">{{ fullText }}_</h1>
+      <h1 class="typewriter typewriter-visible">{{ text }}<span ref="cursorEl" class="cursor">_</span></h1>
+    </div>
     <div
       class="scroll-indicator"
       :class="{ visible: showIndicator }"
@@ -47,7 +48,22 @@ const typeEffect = () => {
 };
 
 onMounted(() => {
-  typeEffect();
+  const el = cursorEl.value;
+  if (!el) {
+    typeEffect();
+    return;
+  }
+  el.classList.add('blink');
+  let count = 0;
+  const onIteration = () => {
+    count++;
+    if (count >= 3) {
+      el.removeEventListener('animationiteration', onIteration);
+      el.classList.remove('blink');
+      typeEffect();
+    }
+  };
+  el.addEventListener('animationiteration', onIteration);
 });
 
 onUnmounted(() => {
@@ -61,15 +77,33 @@ onUnmounted(() => {
   position: relative;
 }
 
+.typewriter-wrapper {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+}
+
 .typewriter {
   font-family: 'JetBrains Mono', sans-serif;
-  font-size: 3rem;
+  /* 3.5vw でビューポート幅に追従、モバイル下限 0.7rem、デスクトップ上限 3rem */
+  font-size: clamp(0.7rem, 3.5vw, 3rem);
   font-weight: 500;
   color: white;
-  text-align: center;
-  white-space: normal;
-  word-wrap: break-word;
-  overflow: hidden;
+  white-space: nowrap;
+  margin: 0;
+}
+
+.typewriter-ghost {
+  visibility: hidden;
+  user-select: none;
+  pointer-events: none;
+}
+
+.typewriter-visible {
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: left;
 }
 
 .cursor {
